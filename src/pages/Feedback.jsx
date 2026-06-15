@@ -1,22 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function Feedback() {
   const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const iframeLoaded = useRef(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = () => {
-    setIsSubmitting(true);
-  };
-
   const handleIframeLoad = () => {
-    if (isSubmitting) {
+    if (iframeLoaded.current) {
       setSubmitted(true);
-      setIsSubmitting(false);
     }
+    iframeLoaded.current = true;
   };
 
   return (
@@ -49,7 +45,6 @@ function Feedback() {
               action="https://docs.google.com/forms/d/e/1FAIpQLSczrTpYYgtoSq6AbTOr33O92eYa0BSK3TjlVTvPcWbK3FSoYQ/formResponse" 
               method="POST" 
               target="hidden_iframe"
-              onSubmit={handleSubmit}
               className="space-y-8"
             >
               
