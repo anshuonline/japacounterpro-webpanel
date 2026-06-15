@@ -48,8 +48,8 @@ function Feedback() {
               {/* Personal Info */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">Name <span className="text-gray-400 font-normal">(Optional)</span></label>
-                  <input type="text" name="entry.158079343" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50" placeholder="Your name" />
+                  <label className="block text-sm font-semibold text-gray-900 mb-2">Name <span className="text-saffron">*</span></label>
+                  <input type="text" name="entry.158079343" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50" placeholder="Your name" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">Email Address <span className="text-saffron">*</span></label>
