@@ -1,18 +1,54 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 function Feedback() {
   const [submitted, setSubmitted] = useState(false);
-  const iframeLoaded = useRef(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleIframeLoad = () => {
-    if (iframeLoaded.current) {
-      setSubmitted(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.target);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      app_usage: formData.get('app_usage'),
+      rating_accuracy: formData.get('rating_accuracy'),
+      rating_ui: formData.get('rating_ui'),
+      rating_sound: formData.get('rating_sound'),
+      rating_history: formData.get('rating_history'),
+      likes_most: formData.get('likes_most'),
+      improvements: formData.get('improvements'),
+      experienced_bugs: formData.get('experienced_bugs'),
+      bug_details: formData.get('bug_details'),
+      overall_rating: formData.get('overall_rating')
+    };
+
+    try {
+      const response = await fetch('https://jcproadminpanel.hypecrews.com/submit_feedback.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      
+      const result = await response.json();
+      if (result.status === 'success') {
+        setSubmitted(true);
+      } else {
+        alert('Error submitting feedback: ' + result.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to submit feedback. Please check your connection.');
+    } finally {
+      setIsSubmitting(false);
     }
-    iframeLoaded.current = true;
   };
 
   return (
@@ -39,28 +75,18 @@ function Feedback() {
           </div>
         ) : (
           <div className="glass rounded-[2rem] p-8 md:p-10 shadow-lg relative overflow-hidden">
-            <iframe name="hidden_iframe" id="hidden_iframe" style={{ display: 'none' }} onLoad={handleIframeLoad}></iframe>
             
-            <form 
-              action="https://docs.google.com/forms/d/e/1FAIpQLSczrTpYYgtoSq6AbTOr33O92eYa0BSK3TjlVTvPcWbK3FSoYQ/formResponse" 
-              method="POST" 
-              target="hidden_iframe"
-              className="space-y-8"
-            >
+            <form onSubmit={handleSubmit} className="space-y-8">
               
               {/* Personal Info */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">Name <span className="text-saffron">*</span></label>
-                  <input type="text" name="entry.158079343" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50" placeholder="Your name" />
+                  <input type="text" name="name" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50" placeholder="Your name" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">Email Address <span className="text-saffron">*</span></label>
-                  <input type="email" name="emailAddress" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50" placeholder="your@email.com" onChange={(e) => {
-                    const hiddenEmail = document.getElementById('hidden_email');
-                    if(hiddenEmail) hiddenEmail.value = e.target.value;
-                  }} />
-                  <input type="hidden" id="hidden_email" name="entry.396836770" value="" />
+                  <input type="email" name="email" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50" placeholder="your@email.com" />
                 </div>
               </div>
 
@@ -70,7 +96,7 @@ function Feedback() {
                 <div className="space-y-2">
                   {['Daily', 'Weekly', 'Occasionally (Less than once a week)'].map(opt => (
                     <label key={opt} className="flex items-center gap-3 p-3 rounded-xl border border-gray-100 hover:bg-white/60 cursor-pointer transition-colors">
-                      <input type="radio" name="entry.1163556189" value={opt} required className="w-4 h-4 text-saffron focus:ring-saffron" />
+                      <input type="radio" name="app_usage" value={opt} required className="w-4 h-4 text-saffron focus:ring-saffron" />
                       <span className="text-gray-700 text-sm">{opt}</span>
                     </label>
                   ))}
@@ -90,16 +116,16 @@ function Feedback() {
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {[
-                        { name: 'Counter Accuracy', entry: 'entry.327402372' },
-                        { name: 'User Interface (UI) Design', entry: 'entry.1971105143' },
-                        { name: 'Sound/Vibration Feedback', entry: 'entry.1304100273' },
-                        { name: 'History/Analytics Tracking', entry: 'entry.522835750' }
+                        { name: 'Counter Accuracy', key: 'rating_accuracy' },
+                        { name: 'User Interface (UI) Design', key: 'rating_ui' },
+                        { name: 'Sound/Vibration Feedback', key: 'rating_sound' },
+                        { name: 'History/Analytics Tracking', key: 'rating_history' }
                       ].map((feature, i) => (
                         <tr key={feature.name} className="hover:bg-white/40">
                           <td className="px-4 py-4 text-gray-700 font-medium">{feature.name}</td>
                           {[1,2,3,4,5].map(n => (
                             <td key={n} className="px-2 py-4 text-center">
-                              <input type="radio" name={feature.entry} value={n} required className="w-4 h-4 text-saffron focus:ring-saffron" />
+                              <input type="radio" name={feature.key} value={n} required className="w-4 h-4 text-saffron focus:ring-saffron" />
                             </td>
                           ))}
                         </tr>
@@ -112,12 +138,12 @@ function Feedback() {
               {/* Text Areas */}
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-2">What do you like MOST about the app? <span className="text-saffron">*</span></label>
-                <textarea name="entry.1171803593" required rows="3" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50 resize-none" placeholder="Your experience..."></textarea>
+                <textarea name="likes_most" required rows="3" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50 resize-none" placeholder="Your experience..."></textarea>
               </div>
 
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-2">What new features or enhancements would you like to see? <span className="text-saffron">*</span></label>
-                <textarea name="entry.856109844" required rows="3" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50 resize-none" placeholder="Suggestions..."></textarea>
+                <textarea name="improvements" required rows="3" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50 resize-none" placeholder="Suggestions..."></textarea>
               </div>
 
               {/* Bugs */}
@@ -126,19 +152,19 @@ function Feedback() {
                   <label className="block text-sm font-semibold text-gray-900 mb-3">Did you experience any bugs/crashes? <span className="text-saffron">*</span></label>
                   <div className="flex gap-4">
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" name="entry.1642815997" value="Yes" required className="w-4 h-4 text-saffron focus:ring-saffron" />
+                      <input type="radio" name="experienced_bugs" value="Yes" required className="w-4 h-4 text-saffron focus:ring-saffron" />
                       <span className="text-gray-700 text-sm font-medium">Yes</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="radio" name="entry.1642815997" value="No" required className="w-4 h-4 text-saffron focus:ring-saffron" />
+                      <input type="radio" name="experienced_bugs" value="No" required className="w-4 h-4 text-saffron focus:ring-saffron" />
                       <span className="text-gray-700 text-sm font-medium">No</span>
                     </label>
                   </div>
                 </div>
                 <div className="md:col-span-8">
                   <label className="block text-sm font-semibold text-gray-900 mb-2">If 'Yes', please describe the issue <span className="text-saffron">*</span></label>
-                  <input type="text" name="entry.269039636" required className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/80" placeholder="Describe the bug here..." />
-                  <p className="text-xs text-gray-500 mt-1">Write 'None' if you selected No.</p>
+                  <input type="text" name="bug_details" className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/80" placeholder="Describe the bug here..." />
+                  <p className="text-xs text-gray-500 mt-1">Leave blank if you selected No.</p>
                 </div>
               </div>
 
@@ -148,7 +174,7 @@ function Feedback() {
                 <div className="flex justify-center gap-2 sm:gap-6">
                   {[1,2,3,4,5].map(n => (
                     <label key={n} className="flex flex-col items-center gap-2 cursor-pointer group">
-                      <input type="radio" name="entry.607695909" value={n} required className="sr-only peer" />
+                      <input type="radio" name="overall_rating" value={n} required className="sr-only peer" />
                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center border-2 border-gray-200 text-gray-500 font-bold peer-checked:bg-saffron peer-checked:border-saffron peer-checked:text-white peer-focus:ring-2 peer-focus:ring-offset-2 peer-focus:ring-saffron transition-all group-hover:border-saffron">
                         {n}
                       </div>
@@ -159,8 +185,8 @@ function Feedback() {
 
               {/* Submit */}
               <div className="pt-6 border-t border-gray-100 flex justify-center">
-                <button type="submit" className="bg-gradient-to-r from-saffron to-orange-500 text-white px-10 py-3.5 rounded-full font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto">
-                  Submit Feedback
+                <button type="submit" disabled={isSubmitting} className="bg-gradient-to-r from-saffron to-orange-500 text-white px-10 py-3.5 rounded-full font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto disabled:opacity-70 disabled:cursor-not-allowed">
+                  {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
                 </button>
               </div>
 
