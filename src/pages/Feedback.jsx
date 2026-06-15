@@ -29,7 +29,7 @@ function Feedback() {
     };
 
     try {
-      const response = await fetch('https://jcproadminpanel.hypecrews.com/submit_feedback.php', {
+      const response = await fetch('https://jcproadminpanel.hypecrews.com/api/japacounterpro/submit_feedback.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
