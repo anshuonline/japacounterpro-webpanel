@@ -20,6 +20,7 @@ function Footer() {
               <h4 className="font-bold text-gray-900 text-sm tracking-wider uppercase">Quick Links</h4>
               <Link to="/" className="text-gray-500 hover:text-saffron transition-colors text-sm">Home</Link>
               <Link to="/why-naam-jaap" className="text-gray-500 hover:text-saffron transition-colors text-sm">Why Naam Jaap?</Link>
+              <Link to="/feedback" className="text-gray-500 hover:text-saffron transition-colors text-sm">Send Feedback</Link>
             </div>
             <div className="flex flex-col gap-3">
               <h4 className="font-bold text-gray-900 text-sm tracking-wider uppercase">Legal</h4>

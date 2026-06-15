@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import WhyNaamJaap from './pages/WhyNaamJaap';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import Feedback from './pages/Feedback';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path="/why-naam-jaap" element={<WhyNaamJaap />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/feedback" element={<Feedback />} />
             </Routes>
           </main>
           <Footer />
