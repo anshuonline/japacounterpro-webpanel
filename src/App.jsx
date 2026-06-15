@@ -5,14 +5,13 @@ import Home from './pages/Home';
 import WhyNaamJaap from './pages/WhyNaamJaap';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
-import './App.css';
 
 function App() {
   return (
     <Router>
-      <div className="app-container">
+      <div className="min-h-screen flex flex-col font-sans bg-gray-50 text-gray-900 selection:bg-saffron selection:text-white">
         <Navbar />
-        <main className="main-content">
+        <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/why-naam-jaap" element={<WhyNaamJaap />} />

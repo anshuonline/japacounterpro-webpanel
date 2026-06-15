@@ -2,38 +2,43 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="container footer-content">
-        <div className="footer-brand">
-          <Link to="/" className="logo-container" style={{ textDecoration: 'none' }}>
-            <img src="/images/logo.png" alt="Logo" className="logo-img-small" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
-            <div className="logo-icon" style={{ display: 'none' }}>🕉️</div>
-            <span className="logo-text">JapaCounter Pro</span>
-          </Link>
-          <p>Your spiritual journey, modernized.</p>
+    <footer className="bg-white border-t border-gray-100 mt-auto pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-10">
+          
+          <div className="flex flex-col gap-3">
+            <Link to="/" className="flex items-center gap-2">
+              <img src="/images/logo.png" alt="Logo" className="w-8 h-8 rounded-lg object-cover" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+              <div className="hidden">🕉️</div>
+              <span className="text-lg font-bold text-gray-900">JapaCounter Pro</span>
+            </Link>
+            <p className="text-gray-500 text-sm max-w-xs">Your spiritual journey, digitized and modernized. Built for peace.</p>
+          </div>
+          
+          <div className="flex gap-16">
+            <div className="flex flex-col gap-3">
+              <h4 className="font-bold text-gray-900 text-sm tracking-wider uppercase">Quick Links</h4>
+              <Link to="/" className="text-gray-500 hover:text-saffron transition-colors text-sm">Home</Link>
+              <Link to="/why-naam-jaap" className="text-gray-500 hover:text-saffron transition-colors text-sm">Why Naam Jaap?</Link>
+            </div>
+            <div className="flex flex-col gap-3">
+              <h4 className="font-bold text-gray-900 text-sm tracking-wider uppercase">Legal</h4>
+              <Link to="/privacy" className="text-gray-500 hover:text-saffron transition-colors text-sm">Privacy Policy</Link>
+              <Link to="/terms" className="text-gray-500 hover:text-saffron transition-colors text-sm">Terms & Conditions</Link>
+            </div>
+          </div>
+          
+          <div>
+            <a href="https://play.google.com/store/apps/details?id=com.japacounterpro" target="_blank" rel="noopener noreferrer" className="inline-block bg-gray-900 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-gray-800 transition-colors shadow-sm">
+              Get the App
+            </a>
+          </div>
+          
         </div>
         
-        <div className="footer-links-grid">
-          <div className="footer-column">
-            <h4>Quick Links</h4>
-            <Link to="/">Home</Link>
-            <Link to="/why-naam-jaap">Why Naam Jaap?</Link>
-          </div>
-          <div className="footer-column">
-            <h4>Legal</h4>
-            <Link to="/privacy">Privacy Policy</Link>
-            <Link to="/terms">Terms & Conditions</Link>
-          </div>
+        <div className="text-center border-t border-gray-100 pt-8 text-gray-400 text-sm">
+          <p>&copy; {new Date().getFullYear()} Hypecrews. All rights reserved.</p>
         </div>
-        
-        <div className="footer-cta">
-          <a href="https://play.google.com/store/apps/details?id=com.japacounterpro" className="btn-primary footer-btn" target="_blank" rel="noopener noreferrer">
-            Get the App
-          </a>
-        </div>
-      </div>
-      <div className="container footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Hypecrews. All rights reserved.</p>
       </div>
     </footer>
   );
