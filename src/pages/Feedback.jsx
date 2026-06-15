@@ -2,13 +2,21 @@ import { useState, useEffect } from 'react';
 
 function Feedback() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const handleSubmit = () => {
-    setSubmitted(true);
+    setIsSubmitting(true);
+  };
+
+  const handleIframeLoad = () => {
+    if (isSubmitting) {
+      setSubmitted(true);
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -35,7 +43,7 @@ function Feedback() {
           </div>
         ) : (
           <div className="glass rounded-[2rem] p-8 md:p-10 shadow-lg relative overflow-hidden">
-            <iframe name="hidden_iframe" id="hidden_iframe" style={{ display: 'none' }} onLoad={() => {}}></iframe>
+            <iframe name="hidden_iframe" id="hidden_iframe" style={{ display: 'none' }} onLoad={handleIframeLoad}></iframe>
             
             <form 
               action="https://docs.google.com/forms/d/e/1FAIpQLSczrTpYYgtoSq6AbTOr33O92eYa0BSK3TjlVTvPcWbK3FSoYQ/formResponse" 
@@ -53,7 +61,11 @@ function Feedback() {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">Email Address <span className="text-saffron">*</span></label>
-                  <input type="email" name="entry.396836770" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50" placeholder="your@email.com" />
+                  <input type="email" name="emailAddress" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50" placeholder="your@email.com" onChange={(e) => {
+                    const hiddenEmail = document.getElementById('hidden_email');
+                    if(hiddenEmail) hiddenEmail.value = e.target.value;
+                  }} />
+                  <input type="hidden" id="hidden_email" name="entry.396836770" value="" />
                 </div>
               </div>
 
