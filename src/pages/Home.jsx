@@ -72,6 +72,27 @@ function Home() {
         </div>
       </section>
 
+      {/* App Gallery Section */}
+      <section className="app-gallery">
+        <div className="container">
+          <div className="section-header">
+            <h2>Beautiful & Intuitive</h2>
+            <p>A serene interface that keeps you focused on what matters.</p>
+          </div>
+          <div className="gallery-grid">
+            <div className="gallery-item">
+              <img src="/images/ss1.png" alt="App Screenshot 1" className="gallery-img" onError={(e) => e.target.style.display = 'none'} />
+            </div>
+            <div className="gallery-item">
+              <img src="/images/ss2.png" alt="App Screenshot 2" className="gallery-img" onError={(e) => e.target.style.display = 'none'} />
+            </div>
+            <div className="gallery-item">
+              <img src="/images/ss3.png" alt="App Screenshot 3" className="gallery-img" onError={(e) => e.target.style.display = 'none'} />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Mini Call to Action for Why Naam Jaap */}
       <section className="mini-cta">
         <div className="container text-center">
