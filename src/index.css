@@ -1,0 +1,71 @@
+:root {
+  --primary-blue: #0A84FF;
+  --secondary-blue: #5E5CE6;
+  --bg-light: #F2F2F7;
+  --bg-surface: #FFFFFF;
+  --text-main: #1C1C1E;
+  --text-secondary: #8E8E93;
+  --border-color: #E5E5EA;
+  --gradient-blue: linear-gradient(135deg, #0A84FF, #5E5CE6);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: var(--bg-light);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.btn-primary {
+  background: var(--gradient-blue);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+}
+
+section {
+  padding: 80px 0;
+}
