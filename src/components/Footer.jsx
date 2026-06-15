@@ -29,9 +29,21 @@ function Footer() {
           </div>
           
           <div>
-            <a href="https://play.google.com/store/apps/details?id=com.japacounterpro" target="_blank" rel="noopener noreferrer" className="inline-block bg-gray-900 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-gray-800 transition-colors shadow-sm">
+            <a href="https://play.google.com/store/apps/details?id=com.japacounterpro" target="_blank" rel="noopener noreferrer" className="inline-block bg-gray-900 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-gray-800 transition-colors shadow-sm mb-6">
               Get the App
             </a>
+            
+            {/* Website Stats */}
+            <div className="flex flex-col gap-3 mt-2">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-semibold text-gray-700">Total Visitors:</span>
+                <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fjapacounterpro.hypecrews.com&countColor=%23f97316&labelColor=%231f2937" alt="Total Visitors" className="h-5 rounded shadow-sm" />
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-500">
+                <span className="font-semibold text-gray-700">Last Updated:</span>
+                <span>June 15, 2026</span>
+              </div>
+            </div>
           </div>
           
         </div>
