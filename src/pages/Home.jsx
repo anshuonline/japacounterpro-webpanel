@@ -45,28 +45,50 @@ function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="features bg-light">
+      {/* Bento Box Features Section */}
+      <section className="features bg-light bento-section">
         <div className="container">
           <div className="section-header">
             <h2>Designed for Peace</h2>
             <p>Every pixel is crafted to give you a distraction-free chanting experience.</p>
           </div>
-          <div className="feature-grid">
-            <div className="feature-card">
-              <div className="feature-icon">🏆</div>
-              <h3>Global Leaderboard</h3>
-              <p>See your worldwide ranking and get inspired by devotees across the globe.</p>
+          <div className="bento-grid">
+            <div className="bento-card card-large gradient-bg">
+              <div className="bento-content">
+                <div className="feature-icon">🎙️</div>
+                <h3>Custom Chanting Audio</h3>
+                <p>Record and trim your own voice for guided meditation. Experience your personal spiritual rhythm.</p>
+              </div>
             </div>
-            <div className="feature-card">
-              <div className="feature-icon">💎</div>
-              <h3>Level Up Your Devotion</h3>
-              <p>Progress through spiritual levels as you complete more malas.</p>
+            <div className="bento-card">
+              <div className="bento-content">
+                <div className="feature-icon">📱</div>
+                <h3>Home Screen Widget</h3>
+                <p>Chant directly from your home screen without opening the app.</p>
+              </div>
             </div>
-            <div className="feature-card">
-              <div className="feature-icon">📊</div>
-              <h3>Track Progress & Stats</h3>
-              <p>Detailed daily, weekly, and all-time statistics for your spiritual journey.</p>
+            <div className="bento-card">
+              <div className="bento-content">
+                <div className="feature-icon">🛡️</div>
+                <h3>Secure Local Backup</h3>
+                <p>Easily export and import your devotion data safely on your device.</p>
+              </div>
+            </div>
+            <div className="bento-card">
+              <div className="bento-content">
+                <div className="feature-icon">📅</div>
+                <h3>Calendar & Streaks</h3>
+                <p>Track your daily devotion with our visual streak calendar.</p>
+              </div>
+            </div>
+            <div className="bento-card card-wide">
+              <div className="bento-content flex-row">
+                <div className="bento-text">
+                  <div className="feature-icon">🏆</div>
+                  <h3>Global Leaderboard & Challenges</h3>
+                  <p>Push your spiritual limits, complete challenges, and see your worldwide ranking.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
