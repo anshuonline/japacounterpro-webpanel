@@ -1,13 +1,13 @@
 :root {
-  --primary-blue: #0A84FF;
-  --secondary-blue: #5E5CE6;
-  --bg-light: #F2F2F7;
+  --primary-saffron: #FF8A00;
+  --secondary-saffron: #FF5A00;
+  --bg-light: #F9F9FA;
   --bg-surface: #FFFFFF;
   --text-main: #1C1C1E;
   --text-secondary: #8E8E93;
   --border-color: #E5E5EA;
-  --gradient-blue: linear-gradient(135deg, #0A84FF, #5E5CE6);
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --gradient-saffron: linear-gradient(135deg, #FF8A00, #FF5A00);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
