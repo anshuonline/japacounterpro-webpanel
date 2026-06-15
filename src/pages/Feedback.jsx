@@ -53,7 +53,7 @@ function Feedback() {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">Email Address <span className="text-saffron">*</span></label>
-                  <input type="email" name="emailAddress" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50" placeholder="your@email.com" />
+                  <input type="email" name="entry.396836770" required className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-saffron focus:border-transparent outline-none transition-all bg-white/50" placeholder="your@email.com" />
                 </div>
               </div>
 
