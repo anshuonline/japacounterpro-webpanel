@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50 bg-[length:400%_400%] animate-gradient pt-24 pb-20">
+    <div className="min-h-screen pt-24 pb-20">
       
       {/* Sarkari Style Marquee with Apple Glass UI */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
