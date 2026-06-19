@@ -158,7 +158,7 @@ function Home() {
             </div>
             <div className="w-full lg:w-1/2 flex flex-col justify-center">
               <span className="bg-orange-100 text-saffron px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block w-fit">
-                Founder's Vision
+                Our Vision
               </span>
               <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 drop-shadow-sm mb-6">
                 Chant Anywhere, Connect Everywhere
@@ -167,7 +167,7 @@ function Home() {
                 "Our mission with Japa Counter Pro is to bring simplicity, peace, and mindfulness to your daily spiritual practices. Built for devotees around the world, this ad-free platform is designed to help you focus entirely on your connection with the divine, free of distractions."
               </p>
               <div className="border-t border-gray-200/80 pt-6">
-                <h4 className="font-bold text-gray-900 text-lg">Krishna Devotee</h4>
+                <h4 className="font-bold text-gray-900 text-lg">Rajdeep Pandit</h4>
                 <p className="text-sm text-saffron font-semibold">Creator & Lead Developer</p>
               </div>
             </div>
