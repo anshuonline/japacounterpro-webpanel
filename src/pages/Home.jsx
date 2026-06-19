@@ -1,6 +1,19 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function Home() {
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jcproadminpanel.hypecrews.com/api/japacounterpro/get_feedbacks.php')
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success') {
+          setFeedbacks(data.data);
+        }
+      })
+      .catch(err => console.error("Error fetching feedbacks:", err));
+  }, []);
   return (
     <div className="min-h-screen pt-24 pb-20">
       
@@ -124,6 +137,38 @@ function Home() {
 
         </div>
       </div>
+
+      {/* Feedbacks Section */}
+      {feedbacks.length > 0 && (
+        <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+          <div className="text-center mb-10">
+            <span className="bg-orange-100 text-saffron px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-3 inline-block">Testimonials</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 drop-shadow-sm mt-3">What Devotees Say</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {feedbacks.map((fb, idx) => (
+              <div key={idx} className="glass p-6 rounded-3xl hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-md border-t-4 border-t-saffron">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-saffron to-orange-500 flex items-center justify-center text-white font-bold text-lg shadow-inner">
+                      {fb.name ? fb.name.charAt(0).toUpperCase() : 'U'}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-900 leading-tight">{fb.name}</h3>
+                      <p className="text-xs text-gray-500">{fb.date}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-0.5 text-orange-400 text-sm">
+                    {[...Array(fb.rating)].map((_, i) => <span key={i}>★</span>)}
+                  </div>
+                </div>
+                <p className="text-gray-700 text-sm italic leading-relaxed">"{fb.comment}"</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
