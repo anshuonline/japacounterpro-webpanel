@@ -138,6 +138,43 @@ function Home() {
         </div>
       </div>
 
+      {/* Promotional / Founder's Message Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <div className="glass overflow-hidden rounded-[40px] relative border border-white/40 shadow-xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-saffron/10 to-orange-500/10 pointer-events-none"></div>
+          <div className="flex flex-col lg:flex-row items-center gap-12 p-8 lg:p-16">
+            <div className="w-full lg:w-1/2 flex justify-center">
+              <div className="relative group">
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-saffron to-orange-500 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative w-72 h-96 md:w-80 md:h-[400px] overflow-hidden rounded-2xl border-4 border-white/60 shadow-2xl">
+                  <img 
+                    src="/images/promo.jpg" 
+                    alt="Founder" 
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" 
+                    onError={(e) => { e.target.src = '/images/ss1.png'; }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="w-full lg:w-1/2 flex flex-col justify-center">
+              <span className="bg-orange-100 text-saffron px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block w-fit">
+                Founder's Vision
+              </span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 drop-shadow-sm mb-6">
+                Chant Anywhere, Connect Everywhere
+              </h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                "Our mission with Japa Counter Pro is to bring simplicity, peace, and mindfulness to your daily spiritual practices. Built for devotees around the world, this ad-free platform is designed to help you focus entirely on your connection with the divine, free of distractions."
+              </p>
+              <div className="border-t border-gray-200/80 pt-6">
+                <h4 className="font-bold text-gray-900 text-lg">Krishna Devotee</h4>
+                <p className="text-sm text-saffron font-semibold">Creator & Lead Developer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Feedbacks Section */}
       {feedbacks.length > 0 && (
         <div className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
